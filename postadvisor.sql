@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 07, 2018 alle 06:54
--- Versione del server: 5.7.17
--- Versione PHP: 5.6.30
+-- Generation Time: Feb 07, 2018 at 04:52 PM
+-- Server version: 5.7.17
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `articoli`
+-- Table structure for table `articoli`
 --
 
 CREATE TABLE `articoli` (
@@ -38,7 +38,7 @@ CREATE TABLE `articoli` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `articoli`
+-- Dumping data for table `articoli`
 --
 
 INSERT INTO `articoli` (`id_articoli`, `autore`, `data`, `contenuto`, `titolo`, `excerpt`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `articoli` (`id_articoli`, `autore`, `data`, `contenuto`, `titolo`, 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `aziende`
+-- Table structure for table `aziende`
 --
 
 CREATE TABLE `aziende` (
@@ -58,7 +58,7 @@ CREATE TABLE `aziende` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `aziende`
+-- Dumping data for table `aziende`
 --
 
 INSERT INTO `aziende` (`ID`, `nome`, `mail`, `logo`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `aziende` (`ID`, `nome`, `mail`, `logo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `aziende_posts`
+-- Table structure for table `aziende_posts`
 --
 
 CREATE TABLE `aziende_posts` (
@@ -78,7 +78,7 @@ CREATE TABLE `aziende_posts` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `aziende_posts`
+-- Dumping data for table `aziende_posts`
 --
 
 INSERT INTO `aziende_posts` (`ID_posts`, `ID_aziende`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `aziende_posts` (`ID_posts`, `ID_aziende`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `page_view`
+-- Table structure for table `page_view`
 --
 
 CREATE TABLE `page_view` (
@@ -103,7 +103,7 @@ CREATE TABLE `page_view` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `postmeta`
+-- Table structure for table `postmeta`
 --
 
 CREATE TABLE `postmeta` (
@@ -116,7 +116,7 @@ CREATE TABLE `postmeta` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -148,7 +148,7 @@ CREATE TABLE `posts` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `preventivo`
+-- Table structure for table `preventivo`
 --
 
 CREATE TABLE `preventivo` (
@@ -163,7 +163,7 @@ CREATE TABLE `preventivo` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `testate`
+-- Table structure for table `testate`
 --
 
 CREATE TABLE `testate` (
@@ -176,7 +176,7 @@ CREATE TABLE `testate` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `testate`
+-- Dumping data for table `testate`
 --
 
 INSERT INTO `testate` (`id_testate`, `nome`, `url`, `ranking`, `tipologia`, `logo`) VALUES
@@ -190,7 +190,7 @@ INSERT INTO `testate` (`id_testate`, `nome`, `url`, `ranking`, `tipologia`, `log
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -203,33 +203,34 @@ CREATE TABLE `users` (
   `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `user_activation_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_status` int(11) NOT NULL DEFAULT '0',
-  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `users_type` int(11) NOT NULL COMMENT '1=azienda; 2=testata; 3=standard; 4=amministratore'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `articoli`
+-- Indexes for table `articoli`
 --
 ALTER TABLE `articoli`
   ADD PRIMARY KEY (`id_articoli`);
 
 --
--- Indici per le tabelle `aziende`
+-- Indexes for table `aziende`
 --
 ALTER TABLE `aziende`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indici per le tabelle `page_view`
+-- Indexes for table `page_view`
 --
 ALTER TABLE `page_view`
   ADD PRIMARY KEY (`id_page_view`);
 
 --
--- Indici per le tabelle `postmeta`
+-- Indexes for table `postmeta`
 --
 ALTER TABLE `postmeta`
   ADD PRIMARY KEY (`meta_id`),
@@ -237,7 +238,7 @@ ALTER TABLE `postmeta`
   ADD KEY `meta_key` (`meta_key`(191));
 
 --
--- Indici per le tabelle `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`ID`),
@@ -247,13 +248,13 @@ ALTER TABLE `posts`
   ADD KEY `post_author` (`post_author`);
 
 --
--- Indici per le tabelle `testate`
+-- Indexes for table `testate`
 --
 ALTER TABLE `testate`
   ADD PRIMARY KEY (`id_testate`);
 
 --
--- Indici per le tabelle `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`),
@@ -262,41 +263,41 @@ ALTER TABLE `users`
   ADD KEY `user_email` (`user_email`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `articoli`
+-- AUTO_INCREMENT for table `articoli`
 --
 ALTER TABLE `articoli`
   MODIFY `id_articoli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT per la tabella `aziende`
+-- AUTO_INCREMENT for table `aziende`
 --
 ALTER TABLE `aziende`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `page_view`
+-- AUTO_INCREMENT for table `page_view`
 --
 ALTER TABLE `page_view`
   MODIFY `id_page_view` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `postmeta`
+-- AUTO_INCREMENT for table `postmeta`
 --
 ALTER TABLE `postmeta`
   MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `testate`
+-- AUTO_INCREMENT for table `testate`
 --
 ALTER TABLE `testate`
   MODIFY `id_testate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT per la tabella `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
