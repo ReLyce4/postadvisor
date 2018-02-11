@@ -18,8 +18,8 @@
 
 <body class="index-page sidebar-collapse">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-success fixed-top navbar-transparent success " color-on-scroll="400">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg bg-success fixed-top" color-on-scroll="400">
+        <div class="container" class="bg-success">
             <div class="navbar-translate">
 					<img src="<?=base_url("/assets/img/logo3.png")?>" style="width: 200px;">
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,9 +49,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url("landing/view/login")?>" target="_blank">
+                        <a class="nav-link" href="<?=base_url("landing/view/login")?>">
                             <i class="now-ui-icons users_circle-08"></i>
-                            <p>Accedi | Registrati</p>
+                            <p>Accedi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=base_url("landing/view/registrazione")?>">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p>Registrati</p>
                         </a>
                     </li>
                 </ul>

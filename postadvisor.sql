@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2018 at 04:52 PM
--- Server version: 5.7.17
--- PHP Version: 5.6.30
+-- Creato il: Feb 11, 2018 alle 15:16
+-- Versione del server: 5.7.17
+-- Versione PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articoli`
+-- Struttura della tabella `articoli`
 --
 
 CREATE TABLE `articoli` (
@@ -38,7 +38,7 @@ CREATE TABLE `articoli` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `articoli`
+-- Dump dei dati per la tabella `articoli`
 --
 
 INSERT INTO `articoli` (`id_articoli`, `autore`, `data`, `contenuto`, `titolo`, `excerpt`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `articoli` (`id_articoli`, `autore`, `data`, `contenuto`, `titolo`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aziende`
+-- Struttura della tabella `aziende`
 --
 
 CREATE TABLE `aziende` (
@@ -58,7 +58,7 @@ CREATE TABLE `aziende` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `aziende`
+-- Dump dei dati per la tabella `aziende`
 --
 
 INSERT INTO `aziende` (`ID`, `nome`, `mail`, `logo`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `aziende` (`ID`, `nome`, `mail`, `logo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aziende_posts`
+-- Struttura della tabella `aziende_posts`
 --
 
 CREATE TABLE `aziende_posts` (
@@ -78,7 +78,7 @@ CREATE TABLE `aziende_posts` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `aziende_posts`
+-- Dump dei dati per la tabella `aziende_posts`
 --
 
 INSERT INTO `aziende_posts` (`ID_posts`, `ID_aziende`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `aziende_posts` (`ID_posts`, `ID_aziende`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `page_view`
+-- Struttura della tabella `page_view`
 --
 
 CREATE TABLE `page_view` (
@@ -103,7 +103,7 @@ CREATE TABLE `page_view` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postmeta`
+-- Struttura della tabella `postmeta`
 --
 
 CREATE TABLE `postmeta` (
@@ -116,7 +116,7 @@ CREATE TABLE `postmeta` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
+-- Struttura della tabella `posts`
 --
 
 CREATE TABLE `posts` (
@@ -148,7 +148,7 @@ CREATE TABLE `posts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `preventivo`
+-- Struttura della tabella `preventivo`
 --
 
 CREATE TABLE `preventivo` (
@@ -163,7 +163,7 @@ CREATE TABLE `preventivo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `testate`
+-- Struttura della tabella `testate`
 --
 
 CREATE TABLE `testate` (
@@ -176,7 +176,7 @@ CREATE TABLE `testate` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `testate`
+-- Dump dei dati per la tabella `testate`
 --
 
 INSERT INTO `testate` (`id_testate`, `nome`, `url`, `ranking`, `tipologia`, `logo`) VALUES
@@ -190,7 +190,7 @@ INSERT INTO `testate` (`id_testate`, `nome`, `url`, `ranking`, `tipologia`, `log
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struttura della tabella `users`
 --
 
 CREATE TABLE `users` (
@@ -204,33 +204,40 @@ CREATE TABLE `users` (
   `user_activation_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_status` int(11) NOT NULL DEFAULT '0',
   `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `users_type` int(11) NOT NULL COMMENT '1=azienda; 2=testata; 3=standard; 4=amministratore'
+  `user_type` int(11) NOT NULL COMMENT '1=azienda; 2=testata; 3=standard; 4=amministratore'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Indexes for dumped tables
+-- Dump dei dati per la tabella `users`
+--
+
+INSERT INTO `users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`, `user_type`) VALUES
+(3, 'a@a.a', '$2y$10$5QTx4.z22IO8o3.D2vjzYu5XxDDDx7kFV/FU64Ho8td1TVxwYDy.u', '', 'a@a.a', '', '0000-00-00 00:00:00', '', 0, '', 3);
+
+--
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `articoli`
+-- Indici per le tabelle `articoli`
 --
 ALTER TABLE `articoli`
   ADD PRIMARY KEY (`id_articoli`);
 
 --
--- Indexes for table `aziende`
+-- Indici per le tabelle `aziende`
 --
 ALTER TABLE `aziende`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `page_view`
+-- Indici per le tabelle `page_view`
 --
 ALTER TABLE `page_view`
   ADD PRIMARY KEY (`id_page_view`);
 
 --
--- Indexes for table `postmeta`
+-- Indici per le tabelle `postmeta`
 --
 ALTER TABLE `postmeta`
   ADD PRIMARY KEY (`meta_id`),
@@ -238,7 +245,7 @@ ALTER TABLE `postmeta`
   ADD KEY `meta_key` (`meta_key`(191));
 
 --
--- Indexes for table `posts`
+-- Indici per le tabelle `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`ID`),
@@ -248,59 +255,60 @@ ALTER TABLE `posts`
   ADD KEY `post_author` (`post_author`);
 
 --
--- Indexes for table `testate`
+-- Indici per le tabelle `testate`
 --
 ALTER TABLE `testate`
   ADD PRIMARY KEY (`id_testate`);
 
 --
--- Indexes for table `users`
+-- Indici per le tabelle `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `user_email_2` (`user_email`),
   ADD KEY `user_login_key` (`user_login`),
   ADD KEY `user_nicename` (`user_nicename`),
   ADD KEY `user_email` (`user_email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `articoli`
+-- AUTO_INCREMENT per la tabella `articoli`
 --
 ALTER TABLE `articoli`
   MODIFY `id_articoli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `aziende`
+-- AUTO_INCREMENT per la tabella `aziende`
 --
 ALTER TABLE `aziende`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `page_view`
+-- AUTO_INCREMENT per la tabella `page_view`
 --
 ALTER TABLE `page_view`
   MODIFY `id_page_view` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `postmeta`
+-- AUTO_INCREMENT per la tabella `postmeta`
 --
 ALTER TABLE `postmeta`
   MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT per la tabella `posts`
 --
 ALTER TABLE `posts`
   MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `testate`
+-- AUTO_INCREMENT per la tabella `testate`
 --
 ALTER TABLE `testate`
   MODIFY `id_testate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

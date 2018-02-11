@@ -36,6 +36,14 @@
     font-size: 25px;
 }
 
+.absolute-bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030
+}
+
 .border-side {
     border-left: 2px dotted black;
     border-right: 2px dotted black;
@@ -2006,7 +2014,7 @@ fieldset[disabled] .btn-danger.active {
 
 .btn-neutral {
     background-color: #FFFFFF;
-    color: #f96332;
+    color: #18ce0f;
 }
 
 .btn-neutral:hover,
@@ -3310,6 +3318,7 @@ body {
 
 .main {
     position: relative;
+    height: 100vmin;
     background: #FFFFFF;
 }
 

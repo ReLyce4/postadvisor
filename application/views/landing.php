@@ -1,13 +1,11 @@
 <div class="wrapper">
         <div class="page-header clear-filter" filter-color="green">
-            <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/header.jpg');">
+            <div class="page-header-image" data-parallax="true" style="background-image: url('<?=base_url("assets/img/header.jpg")?>');">
             </div>
             <div class="container">
                 <div class="content-center brand">
-                    
                     <h1 class="h1-seo"><strong>Postadvisor</strong></h1>
                     <h3>Scegli i migliori siti e condividi i tuoi contenuti</h3>
-                    
                 </div>
             </div>
         </div>
