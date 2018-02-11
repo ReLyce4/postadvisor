@@ -1,4 +1,4 @@
-<footer class="footer" data-background-color="black">
+        <footer class="footer absolute-bottom" data-background-color="black">
             <div class="container">
                 <div class="copyright">
                     &copy;
