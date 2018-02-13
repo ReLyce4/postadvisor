@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 11, 2018 alle 15:16
+-- Creato il: Feb 13, 2018 alle 11:26
 -- Versione del server: 5.7.17
 -- Versione PHP: 5.6.30
 
@@ -85,6 +85,28 @@ INSERT INTO `aziende_posts` (`ID_posts`, `ID_aziende`) VALUES
 (1, 1),
 (2, 1),
 (3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ci_sessions`
+--
+
+CREATE TABLE `ci_sessions` (
+  `id` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `ip_address` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `data` blob NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `ci_sessions`
+--
+
+INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
+('6v149ld4r6f0p0u9os1q44rirjmci1t0', '127.0.0.1', 1518438118, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383433373938323b),
+('vcvjfolq9dtu6jekkihe1enqhb75vttg', '127.0.0.1', 1518448399, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383434383336393b656d61696c7c733a353a226140612e61223b7469706f5f7574656e74657c733a313a2233223b),
+('m6um1pn1sokcr21gv26e9v8r9s7qgoot', '127.0.0.1', 1518517574, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383531373537343b);
 
 -- --------------------------------------------------------
 
@@ -200,10 +222,10 @@ CREATE TABLE `users` (
   `user_nicename` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_url` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_activation_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `user_status` int(11) NOT NULL DEFAULT '0',
-  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_type` int(11) NOT NULL COMMENT '1=azienda; 2=testata; 3=standard; 4=amministratore'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -212,7 +234,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`, `user_type`) VALUES
-(3, 'a@a.a', '$2y$10$5QTx4.z22IO8o3.D2vjzYu5XxDDDx7kFV/FU64Ho8td1TVxwYDy.u', '', 'a@a.a', '', '0000-00-00 00:00:00', '', 0, '', 3);
+(3, 'a@a.a', '$2y$10$5QTx4.z22IO8o3.D2vjzYu5XxDDDx7kFV/FU64Ho8td1TVxwYDy.u', '', 'a@a.a', '', '0000-00-00 00:00:00', '', 0, NULL, 3),
+(4, 'b@b.b', '$2y$10$Non/5m/fCuAD3P2cSrT0c.d4cYm2dBO2qHokYwh1U667UdBfVLimq', '', 'b@b.b', '', '0000-00-00 00:00:00', '', 0, NULL, 3),
+(6, 'c@c.c', '$2y$10$dw7Yjx2GUxVIpApwRrNjFe/jjO4k.r87Cokm7YOSA5BD8QBLNPyf2', '', 'c@c.c', '', '0000-00-00 00:00:00', '', 0, NULL, 1),
+(7, 'd@d.d', '$2y$10$MPp3HeFOGDsP0JduGEuxe.0JjZH4gob7FKMdzKIrYIskSzl1FFs4e', '', 'd@d.d', '', '0000-00-00 00:00:00', '', 0, NULL, 1),
+(8, 'e@e.e', '$2y$10$a6aR9CqsC.ppzaE.yRI.3OB2y.ZAAc.F1rxib.AmALZp/fE4YjcIm', '', 'e@e.e', '', '2018-02-12 10:47:14', '', 0, NULL, 1),
+(9, 'f@f.f', '$2y$10$8uQXxWo4OEoXlXI6YcH6ouMTiIfDPDRQjN/G0ND6Faj7/.NCOWlzy', '', 'f@f.f', '', '2018-02-12 11:09:44', '', 0, NULL, 2),
+(10, 'ludovicapagani@gmail.com', '$2y$10$nWghTzbQbIgBiF7TMqCfYOUyMviEbNuNLwGAb.AC.rAyQ6YsYAan.', '', 'ludovicapagani@gmail.com', '', '2018-02-13 11:25:56', '', 0, NULL, 2);
 
 --
 -- Indici per le tabelle scaricate
@@ -229,6 +257,13 @@ ALTER TABLE `articoli`
 --
 ALTER TABLE `aziende`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indici per le tabelle `ci_sessions`
+--
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`id`,`ip_address`),
+  ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
 -- Indici per le tabelle `page_view`
@@ -308,7 +343,7 @@ ALTER TABLE `testate`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
