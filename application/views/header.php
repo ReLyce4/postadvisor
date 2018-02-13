@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg bg-success fixed-top" color-on-scroll="400">
         <div class="container" class="bg-success">
             <div class="navbar-translate">
-					<img src="<?=base_url("/assets/img/logo3.png")?>" style="width: 200px;">
+					<a href="<?=base_url()?>"><img src="<?=base_url("/assets/img/logo3.png")?>" style="width: 200px;"></a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar bar1"></span>
                     <span class="navbar-toggler-bar bar2"></span>
@@ -37,29 +37,45 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">
+                        <a class="nav-link" href="#">
                             <i class="now-ui-icons files_paper"></i>
                             <p>Il nostro servizio</p>
                         </a>
                     </li>
 					<li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">
+                        <a class="nav-link" href="#">
                             <i class="now-ui-icons ui-1_email-85"></i>
                             <p>Contattaci</p>
                         </a>
                     </li>
+                    <?php if(!isset($_SESSION["email"])) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url("landing/view/login")?>">
+                        <a class="nav-link" href="<?=base_url("view/login")?>">
                             <i class="now-ui-icons users_circle-08"></i>
                             <p>Accedi</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url("landing/view/registrazione")?>">
+                        <a class="nav-link" href="<?=base_url("view/registrazione")?>">
                             <i class="now-ui-icons users_circle-08"></i>
                             <p>Registrati</p>
                         </a>
                     </li>
+                    <?php endif ?>
+                    <?php if(isset($_SESSION["email"])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=base_url("utente/profilo")?>">
+                            <i class="now-ui-icons users_circle-08"></i>
+                            <p><?=$_SESSION["email"]?></p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=base_url("utente/logout")?>">
+                            <i class="now-ui-icons media-1_button-power"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </div>

@@ -4,7 +4,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="card card-signup" data-background-color="green">
-                            <form class="form" method="post" action="<?=base_url("landing/registrazione")?>">
+                            <form class="form" method="post" action="<?=base_url("utente/registrazione")?>">
                                 <div class="header text-center">
                                     <h4 class="title title-up">Registrazione</h4>
                                 </div>
