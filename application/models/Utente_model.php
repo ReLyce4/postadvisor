@@ -44,21 +44,4 @@ class Utente_model extends CI_Model
             "errore" => "Credenziali errate"
         );
     }
-
-    public function get_dati_profilo($email, $tipo_utente)
-    {
-        //$query = "SELECT user_login, user_email, user_type, user_registered FROM users WHERE email = " . $email;
-        $query = "SELECT * FROM users WHERE email = " . $email;
-        switch($tipo_utente)
-        {
-            case 1 :
-            get_dati_azienda();
-            break;
-        }
-    }
-
-    private function get_dati_azienda()
-    {
-        
-    }
 }
