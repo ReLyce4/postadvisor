@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class Landing_model extends CI_Model
 {
@@ -23,7 +23,7 @@ class Landing_model extends CI_Model
         $result = $this->db->query($query);
         $result = $result->row();
         $row["n_aziende"] = $result->num;
-        
+
         return $row;
     }
 
@@ -31,9 +31,8 @@ class Landing_model extends CI_Model
     {
         $query = "SELECT nome, logo FROM aziende LIMIT " . $n_aziende;
         $result = $this->db->query($query);
-        $x=0;
-        foreach($result->result() as $temp)
-        {
+        $x = 0;
+        foreach ($result->result() as $temp) {
             $row[$x]["nome"] = $temp->nome;
             $row[$x]["logo"] = $temp->logo;
             $x++;
@@ -46,8 +45,7 @@ class Landing_model extends CI_Model
         $query = "SELECT logo FROM testate LIMIT " . $n_testate;
         $result = $this->db->query($query);
         $x = 0;
-        foreach($result->result() as $temp)
-        {
+        foreach ($result->result() as $temp) {
             $row[$x] = $temp->logo;
             $x++;
         }

@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class Utente_model extends CI_Model
 {
@@ -12,10 +12,8 @@ class Utente_model extends CI_Model
         $errore = null;
         $query = "SELECT user_email FROM users";
         $result = $this->db->query($query);
-        foreach($result->result() as $element)
-        {
-            if(strcmp($email, $element->user_email) == 0)
-            {
+        foreach ($result->result() as $element) {
+            if (strcmp($email, $element->user_email) == 0) {
                 $errore = "Email già registrata";
                 return $errore;
             }
@@ -30,18 +28,16 @@ class Utente_model extends CI_Model
     {
         $query = "SELECT user_type, user_email, user_pass FROM users";
         $result = $this->db->query($query);
-        foreach($result->result() as $element)
-        {
-            if(strcmp($email, $element->user_email) == 0 && password_verify($password, $element->user_pass))
-            {
+        foreach ($result->result() as $element) {
+            if (strcmp($email, $element->user_email) == 0 && password_verify($password, $element->user_pass)) {
                 return array(
                     "errore" => null,
-                    "tipo_utente" => $element->user_type
+                    "tipo_utente" => $element->user_type,
                 );
             }
         }
         return array(
-            "errore" => "Credenziali errate"
+            "errore" => "Credenziali errate",
         );
     }
 }

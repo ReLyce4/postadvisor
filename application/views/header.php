@@ -48,7 +48,7 @@
                             <p>Contattaci</p>
                         </a>
                     </li>
-                    <?php if(!isset($_SESSION["email"])) : ?>
+                    <?php if (!isset($_SESSION["email"])): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=base_url("view/login")?>">
                             <i class="now-ui-icons users_circle-08"></i>
@@ -61,8 +61,8 @@
                             <p>Registrati</p>
                         </a>
                     </li>
-                    <?php endif ?>
-                    <?php if(isset($_SESSION["email"])) : ?>
+                    <?php endif?>
+                    <?php if (isset($_SESSION["email"])): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=base_url("utente/profilo")?>">
                             <i class="now-ui-icons users_circle-08"></i>
@@ -75,7 +75,7 @@
                             <p>Logout</p>
                         </a>
                     </li>
-                    <?php endif ?>
+                    <?php endif?>
                 </ul>
             </div>
         </div>

@@ -32,7 +32,7 @@
                                             if (input.value != document.getElementById('password').value) {
                                                 input.setCustomValidity('Le password devono essere uguali.');
                                             } else {
-                                                // input è valido -- reset dell'error message
+                                                // L'input è valido -- reset del messaggio di errore
                                                 input.setCustomValidity('');
                                             }
                                         }

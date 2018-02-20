@@ -1,15 +1,16 @@
-<div class="wrapper">
-        <div class="page-header clear-filter" filter-color="green">
-            <div class="page-header-image" data-parallax="true" style="background-image: url('<?=base_url("assets/img/header.jpg")?>');">
-            </div>
-            <div class="container">
-                <div class="content-center brand">
-                    <h1 class="h1-seo"><strong>Postadvisor</strong></h1>
-                    <h3>Scegli i migliori siti e condividi i tuoi contenuti</h3>
+        <div class="wrapper">
+            <div class="page-header clear-filter" filter-color="green">
+                <div class="page-header-image" data-parallax="true" style="background-image: url('<?=base_url("assets/img/header.jpg")?>');">
+                </div>
+                <div class="container">
+                    <div class="content-center brand">
+                        <h1 class="h1-seo"><strong>Postadvisor</strong></h1>
+                        <h3>Scegli i migliori siti e condividi i tuoi contenuti</h3>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="main">
+
             <div class="section section-basic">
                 <div class="container">
                     <div class="row statistics">
@@ -74,35 +75,35 @@
                             <div class="col-md-10">
                             </div>
                         </div>
-                        
+
                         <h2 class="title">Aziende famose che hanno usufruito del nostro servizio</h2>
                         <div class="row">
-                        <?php for($x = 0; $x < 3; $x++) : ?>
+                        <?php for ($x = 0; $x < 3; $x++): ?>
                             <div class="col-sm-4">
                                     <p class="category" style="text-align:center";><?=$aziende[$x]["nome"]?></p>
                                     <img src="<?=$aziende[$x]["logo"]?>" alt="Circle Image" class="rounded-circle">
                                     <!-- <p class="paragraph" style="margin-top: 25px;">Elogiamo la nostra partnership in qualsiasi maniera possibile</p> -->
                             </div>
-                        <?php endfor ?>
+                        <?php endfor?>
               </div>
-            
+
             <div class="container" style="margin-top: 20px;">
                     <h2 class="title">Testate giornalistiche più rinomate</h2>
                 <div class="row">
-                <?php for($x = 0; $x < 6; $x++) : ?>
+                <?php for ($x = 0; $x < 6; $x++): ?>
                     <div class="col-md-2">
                             <img src="<?=$testate[$x]?>" alt="Circle Image" class="image">
                     </div>
-                <?php endfor ?>
-                    
+                <?php endfor?>
+
                 </div>
             </div>
-                
-  
+
+
             <div class="section section-signup" style="background-image: url('assets/img/bg11.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
                 <div class="container">
                     <div class="row">
-                        
+
                         <div class="card card-signup" data-background-color="green">
                             <form class="form" method="" action="">
                                 <div class="header text-center">
@@ -156,7 +157,7 @@
                     </div>
                 </div>
             </div>
-        
+
         <!-- Sart Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">

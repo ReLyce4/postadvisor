@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 13, 2018 alle 11:26
+-- Creato il: Feb 20, 2018 alle 18:25
 -- Versione del server: 5.7.17
 -- Versione PHP: 5.6.30
 
@@ -37,12 +37,16 @@ CREATE TABLE `articoli` (
   `excerpt` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dump dei dati per la tabella `articoli`
+-- Struttura della tabella `articoli_tags`
 --
 
-INSERT INTO `articoli` (`id_articoli`, `autore`, `data`, `contenuto`, `titolo`, `excerpt`) VALUES
-(1, 'Christian', '2018-02-07', '&lt;p&gt;Questo &amp;egrave; il &lt;em&gt;corpo&lt;/em&gt; dell&amp;nbsp;&lt;strong&gt;articolo&lt;/strong&gt;&lt;strong&gt; 1&lt;/strong&gt;&lt;/p&gt;\r\n', 'Articolo 1', 'Excerpt articolo 1');
+CREATE TABLE `articoli_tags` (
+  `id_articoli` int(11) NOT NULL,
+  `id_tags` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -106,7 +110,32 @@ CREATE TABLE `ci_sessions` (
 INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 ('6v149ld4r6f0p0u9os1q44rirjmci1t0', '127.0.0.1', 1518438118, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383433373938323b),
 ('vcvjfolq9dtu6jekkihe1enqhb75vttg', '127.0.0.1', 1518448399, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383434383336393b656d61696c7c733a353a226140612e61223b7469706f5f7574656e74657c733a313a2233223b),
-('m6um1pn1sokcr21gv26e9v8r9s7qgoot', '127.0.0.1', 1518517574, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383531373537343b);
+('m6um1pn1sokcr21gv26e9v8r9s7qgoot', '127.0.0.1', 1518517574, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383531373537343b),
+('poj8g1oah02l4khcg2aj40a7h2oqqudd', '127.0.0.1', 1518949363, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383934393135323b656d61696c7c733a353a226740672e67223b7469706f5f7574656e74657c733a313a2231223b),
+('m6sq0rm3fgnr6ft2fu1abind9ijfpe51', '127.0.0.1', 1518962359, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531383936323335393b),
+('vemkfpfv0d4u97juldtjkn89nps55pf0', '127.0.0.1', 1519134048, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531393133343034383b),
+('ogbdh1c3qbg2i183alifi5cmrsjtrhvh', '127.0.0.1', 1519147420, 0x5f5f63695f6c6173745f726567656e65726174657c693a313531393134373335333b656d61696c7c733a353a226140612e61223b7469706f5f7574656e74657c733a313a2233223b);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `media`
+--
+
+CREATE TABLE `media` (
+  `id_media` int(11) NOT NULL,
+  `url` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `tipo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `id_articolo` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dump dei dati per la tabella `media`
+--
+
+INSERT INTO `media` (`id_media`, `url`, `tipo`, `id_articolo`) VALUES
+(61, 'Ain7NDk.png', '', 38),
+(62, 'Saber-fate-stay-night-24684456-1680-1050.jpg', '', 38);
 
 -- --------------------------------------------------------
 
@@ -185,6 +214,17 @@ CREATE TABLE `preventivo` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `tags`
+--
+
+CREATE TABLE `tags` (
+  `id_tags` int(11) NOT NULL,
+  `nome` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `testate`
 --
 
@@ -240,7 +280,7 @@ INSERT INTO `users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_ema
 (7, 'd@d.d', '$2y$10$MPp3HeFOGDsP0JduGEuxe.0JjZH4gob7FKMdzKIrYIskSzl1FFs4e', '', 'd@d.d', '', '0000-00-00 00:00:00', '', 0, NULL, 1),
 (8, 'e@e.e', '$2y$10$a6aR9CqsC.ppzaE.yRI.3OB2y.ZAAc.F1rxib.AmALZp/fE4YjcIm', '', 'e@e.e', '', '2018-02-12 10:47:14', '', 0, NULL, 1),
 (9, 'f@f.f', '$2y$10$8uQXxWo4OEoXlXI6YcH6ouMTiIfDPDRQjN/G0ND6Faj7/.NCOWlzy', '', 'f@f.f', '', '2018-02-12 11:09:44', '', 0, NULL, 2),
-(10, 'ludovicapagani@gmail.com', '$2y$10$nWghTzbQbIgBiF7TMqCfYOUyMviEbNuNLwGAb.AC.rAyQ6YsYAan.', '', 'ludovicapagani@gmail.com', '', '2018-02-13 11:25:56', '', 0, NULL, 2);
+(11, 'g@g.g', '$2y$10$DOo6QVJWGiVRl/Etpk7fKeXVBvO3O7CCZ7EmwXEkh1uB97JLDKdY6', '', 'g@g.g', '', '2018-02-18 10:44:36', '', 0, NULL, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -264,6 +304,12 @@ ALTER TABLE `aziende`
 ALTER TABLE `ci_sessions`
   ADD PRIMARY KEY (`id`,`ip_address`),
   ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
+-- Indici per le tabelle `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`id_media`);
 
 --
 -- Indici per le tabelle `page_view`
@@ -290,6 +336,13 @@ ALTER TABLE `posts`
   ADD KEY `post_author` (`post_author`);
 
 --
+-- Indici per le tabelle `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id_tags`),
+  ADD UNIQUE KEY `nome` (`nome`);
+
+--
 -- Indici per le tabelle `testate`
 --
 ALTER TABLE `testate`
@@ -313,12 +366,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `articoli`
 --
 ALTER TABLE `articoli`
-  MODIFY `id_articoli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_articoli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT per la tabella `aziende`
 --
 ALTER TABLE `aziende`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT per la tabella `media`
+--
+ALTER TABLE `media`
+  MODIFY `id_media` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT per la tabella `page_view`
 --
@@ -335,6 +393,11 @@ ALTER TABLE `postmeta`
 ALTER TABLE `posts`
   MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT per la tabella `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `id_tags` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT per la tabella `testate`
 --
 ALTER TABLE `testate`
@@ -343,7 +406,7 @@ ALTER TABLE `testate`
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;COMMIT;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
