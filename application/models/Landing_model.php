@@ -7,7 +7,7 @@ class Landing_model extends CI_Model
         parent::__construct();
     }
 
-    public function get_statistiche()
+    /*public function get_statistiche()
     {
         $query = "SELECT COUNT(ID) AS num FROM posts";
         $result = $this->db->query($query);
@@ -50,5 +50,5 @@ class Landing_model extends CI_Model
             $x++;
         }
         return $row;
-    }
+    }*/
 }

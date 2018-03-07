@@ -39,9 +39,8 @@
                                     </script>
                                     <div class="input-group form-group-no-border">
                                         <select name="tipo_utente" class="form-control">
-                                            <option value="1">Azienda</option>
+                                            <option value="1">Generico</option>
                                             <option value="2">Testata</option>
-                                            <option value="3">Standard</option>
                                         </select>
                                     </div>
                                     <!-- If you want to add a checkbox to this form, uncomment this code -->

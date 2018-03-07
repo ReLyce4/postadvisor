@@ -8,49 +8,60 @@ class Admin extends CI_Controller
         $this->load->helper('url');
         $this->load->helper('url_helper');
         $this->load->helper('form_helper');
-        $config['upload_path'] = FCPATH . 'assets\img\upload';
-        $config['allowed_types'] = 'gif|jpg|png|mp4';
-        $this->load->library('upload', $config);
-        $this->load->library('MY_Upload');
         $this->load->model('admin_model');
+        $this->load->library('grocery_CRUD');
     }
 
     public function index()
     {
-        echo "Pagina vuota";
-    }
-
-    public function inserimento($default = "articolo")
-    {
-        $data["error"] = "";
-        $this->load->view('header');
-        $this->load->view('in_articolo', $data);
-        $this->load->view('footer');
-    }
-
-    public function upload()
-    {
-        $titolo = $this->input->post('titolo');
-        $contenuto = $this->input->post('contenuto');
-        $autore = $this->input->post('autore');
-        $data = $this->input->post('data');
-        $tags = $this->input->post('tags');
-        $media = $_FILES["media"]["name"];
-        $tags = explode(";", $tags);
-        $this->admin_model->upload_articolo($titolo, $contenuto, $autore, $data, $tags, $media);
-        exit;
-
-        if (!$this->upload->do_multi_upload('media')) {
-            $esito = array('esito' => $this->upload->display_errors());
-            $this->load->view('header');
-            $this->load->view('esito', $esito);
-            $this->load->view('footer');
+        if($_SESSION['is_logged']) {
+            $this->load->view('admin/header');
+            $this->load->view('admin_home');
+            $this->load->view('admin/footer');
         } else {
-            $data = array('upload_data' => $this->upload->data());
-            $esito["esito"] = "Caricamento avvenuto con successo";
-            $this->load->view('header');
-            $this->load->view('esito', $esito);
-            $this->load->view('footer');
+            header("Location: " . base_url('admin/view/admin_login'));
         }
     }
+
+    public function login($default = null)
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = $_POST["email"];
+            $login_data = $this->admin_model->login($email, $_POST["password"]);
+            if (!is_null($login_data["errore"])) {
+                echo $login_data["errore"];
+            } else {
+                $_SESSION["email"] = $email;
+                $_SESSION["tipo_utente"] = $login_data["tipo_utente"];
+                header("Location: " . base_url('admin/view/admin_home'));
+            }
+        } else {
+            echo "Errore 502 Bad Gateway";
+        }
+    }
+
+    public function view($page = null)
+    {
+        if (is_null($page)) {
+            header("Location: " . base_url('admin/view/login'));
+            exit;
+        }
+        elseif (strcasecmp($page, 'login') == 0) {
+            $this->load->view('login');
+        } else {
+            $this->load->view('admin/header');
+            $this->load->view($page);
+            $this->load->view('admin/footer');
+        }
+    }
+
+    public function tabella($table_name)
+	{
+		$crud = new grocery_CRUD();
+		$crud->set_table($table_name);
+		$output = $crud->render();
+        $this->load->view('admin/header', $output);
+        $this->load->view('tabella');
+        $this->load->view('admin/footer');
+	}
 }

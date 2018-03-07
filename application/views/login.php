@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                                 <div class="footer text-center">
-                                    <button type="submit" class="btn btn-neutral btn-round btn-lg">Invia</button>
+                                    <button type="submit" class="btn btn-neutral btn-round btn-lg">Accedi</button>
                                 </div>
                             </form>
                         </div>
