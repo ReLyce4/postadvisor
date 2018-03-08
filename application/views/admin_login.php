@@ -1,70 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CodeInsect | Admin System Log in</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Admin login</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="http://localhost/postadvisor-wip/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="http://localhost/postadvisor-wip/assets/css/now-ui-kit.css?v=1.1.0" rel="stylesheet" />
-
-
-</head>
-
-<body>
-
-<div class="wrapper">
-        <div class="main">
-            <div class="section section-signup" style="background-image: url('assets/img/bg11.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
-                <div class="container">
-                    <div class="row">
-                        <div class="card card-signup" data-background-color="green">
-                            <form class="form" method="post" action="http://localhost/postadvisor-wip/admin/login">
-                                <div class="header text-center">
-                                    <h4 class="title title-up">Accesso amministrazione</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                        <i class="now-ui-icons ui-1_email-85"></i>
-                                        </span>
-                                        <input type="email" name="email" class="form-control" placeholder="Email" required>
-                                    </div>
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                                        </span>
-                                        <input type="password" name="password" placeholder="Password" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="footer text-center">
-                                    <button type="submit" class="btn btn-neutral btn-round btn-lg">Accedi</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="login-page">
+    <div class="login-box">
+      <div class="login-logo">
+        <a href="#"><b>CodeInsect</b><br>Admin System</a>
+      </div><!-- /.login-logo -->
+      <div class="login-box-body">
+        <p class="login-box-msg">Sign In</p>
+        <?php $this->load->helper('form'); ?>
+        <div class="row">
+            <div class="col-md-12">
+                <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
             </div>
+        </div>
+        <?php
+        $this->load->helper('form');
+        $error = $this->session->flashdata('error');
+        if($error)
+        {
+            ?>
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $error; ?>                    
+            </div>
+        <?php }
+        $success = $this->session->flashdata('success');
+        if($success)
+        {
+            ?>
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <?php echo $success; ?>                    
+            </div>
+        <?php } ?>
+        
+        <form action="<?php echo base_url(); ?>loginMe" method="post">
+          <div class="form-group has-feedback">
+            <input type="email" class="form-control" placeholder="Email" name="email" required />
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Password" name="password" required />
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-8">    
+              <!-- <div class="checkbox icheck">
+                <label>
+                  <input type="checkbox"> Remember Me
+                </label>
+              </div>  -->                       
+            </div><!-- /.col -->
+            <div class="col-xs-4">
+              <input type="submit" class="btn btn-primary btn-block btn-flat" value="Sign In" />
+            </div><!-- /.col -->
+          </div>
+        </form>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="http://localhost/postadvisor-wip/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="http://localhost/postadvisor-wip/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <a href="<?php echo base_url() ?>forgotPassword">Forgot Password</a><br>
+        
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
-
-</body>
-
+    <script src="<?php echo base_url(); ?>assets/js/jQuery-2.1.4.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+  </body>
 </html>

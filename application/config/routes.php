@@ -50,6 +50,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'landing';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['404_override'] = 'error';
+//$route['translate_uri_dashes'] = FALSE;
 $route['view/(:any)'] = 'landing/view/$1';
+$route['admin'] = 'login';
+$route['tabella/(:any)'] = 'user/tabella/$1';
+$route['tabella/(:any)/add'] = 'user/tabella/$1/add';
+$route['tabella/(:any)/insert'] = 'user/tabella/$1/insert';
+$route['tabella/(:any)/edit/(:any)'] = 'user/tabella/$1/edit/$2';
+$route['tabella/(:any)/delete/(:any)'] = 'user/tabella/$1/delete/$2';
+$route['tabella/(:any)/clone/(:any)'] = 'user/tabella/$1/clone/$2';
+$route['tabella/(:any)/read/(:any)'] = 'user/tabella/$1/read/$2';
+$route['tabella/(:any)/update/(:any)'] = 'user/tabella/$1/update/$2';
+
+$route['loginMe'] = 'login/loginMe';
+$route['dashboard'] = 'user';
+$route['logout'] = 'user/logout';
+$route['userListing'] = 'user/userListing';
+$route['userListing/(:num)'] = "user/userListing/$1";
+$route['addNew'] = "user/addNew";
+
+$route['addNewUser'] = "user/addNewUser";
+$route['editOld'] = "user/editOld";
+$route['editOld/(:num)'] = "user/editOld/$1";
+$route['editUser'] = "user/editUser";
+$route['deleteUser'] = "user/deleteUser";
+$route['loadChangePass'] = "user/loadChangePass";
+$route['changePassword'] = "user/changePassword";
+$route['pageNotFound'] = "user/pageNotFound";
+$route['checkEmailExists'] = "user/checkEmailExists";
+$route['login-history'] = "user/loginHistoy";
+$route['login-history/(:num)'] = "user/loginHistoy/$1";
+$route['login-history/(:num)/(:num)'] = "user/loginHistoy/$1/$2";
+
+$route['forgotPassword'] = "login/forgotPassword";
+$route['resetPasswordUser'] = "login/resetPasswordUser";
+$route['resetPasswordConfirmUser'] = "login/resetPasswordConfirmUser";
+$route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
+$route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
+$route['createPasswordUser'] = "login/createPasswordUser";

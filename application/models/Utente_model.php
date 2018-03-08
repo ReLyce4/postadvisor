@@ -26,7 +26,7 @@ class Utente_model extends CI_Model
 
     public function login($email, $password)
     {
-        $query = "SELECT tipo_utente, email, password FROM users";
+        $query = "SELECT tipo_utente, email, password FROM utente";
         $result = $this->db->query($query);
         foreach ($result->result() as $element) {
             if (strcmp($email, $element->email) == 0 && password_verify($password, $element->password)) {
