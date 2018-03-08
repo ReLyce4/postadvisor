@@ -54,14 +54,8 @@ $route['404_override'] = 'error';
 //$route['translate_uri_dashes'] = FALSE;
 $route['view/(:any)'] = 'landing/view/$1';
 $route['admin'] = 'login';
-$route['tabella/(:any)'] = 'user/tabella/$1';
-$route['tabella/(:any)/add'] = 'user/tabella/$1/add';
-$route['tabella/(:any)/insert'] = 'user/tabella/$1/insert';
-$route['tabella/(:any)/edit/(:any)'] = 'user/tabella/$1/edit/$2';
-$route['tabella/(:any)/delete/(:any)'] = 'user/tabella/$1/delete/$2';
-$route['tabella/(:any)/clone/(:any)'] = 'user/tabella/$1/clone/$2';
-$route['tabella/(:any)/read/(:any)'] = 'user/tabella/$1/read/$2';
-$route['tabella/(:any)/update/(:any)'] = 'user/tabella/$1/update/$2';
+$route['testataListing'] = 'user/testataListing';
+$route['adListing'] = 'user/adListing';
 
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'user';

@@ -369,18 +369,34 @@ class User extends BaseController
         }        
     }
 
-    public function tabella($table_name)
+    public function testataListing()
 	{
-        $this->global['pageTitle'] = 'CodeInsect : ' . ucfirst($table_name);
+        $this->global['pageTitle'] = 'CodeInsect : ' . 'Testate';
         if($this->isAdmin() == TRUE) {
             $this->loadThis();
         } else {
             $crud = new grocery_CRUD();
-            $crud->set_table($table_name);
-            $crud->set_theme('flexigrid');
+            $crud->set_table("testata");
+            $crud->set_subject("testata");
             $crud->unset_print();
             $data["content"] = $crud->render();
-            $data["table_name"] = $table_name;
+            $data["table_name"] = 'testata';
+            $this->loadViews("tabella", $this->global, $data, NULL);
+        }
+    }
+
+    public function adListing()
+	{
+        $this->global['pageTitle'] = 'CodeInsect : ' . 'Ads';
+        if($this->isAdmin() == TRUE) {
+            $this->loadThis();
+        } else {
+            $crud = new grocery_CRUD();
+            $crud->set_table("ad");
+            $crud->set_subject("ad");
+            $crud->unset_print();
+            $data["content"] = $crud->render();
+            $data["table_name"] = 'ad';
             $this->loadViews("tabella", $this->global, $data, NULL);
         }
     }

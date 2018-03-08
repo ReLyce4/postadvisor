@@ -155,13 +155,13 @@
             {
             ?>
             <li class="treeview">
-              <a href="<?php echo base_url("tabella/testata"); ?>">
+              <a href="<?php echo base_url(); ?>testataListing">
                 <i class="fa fa-newspaper-o"></i>
                 <span>Testata</span>
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url("tabella/ad"); ?>">
+              <a href="<?php echo base_url(); ?>adListing">
                 <i class="fa fa-image"></i>
                 <span>Ad</span>
               </a>
