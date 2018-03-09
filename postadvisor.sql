@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 11, 2018 alle 15:16
+-- Creato il: Mar 09, 2018 alle 12:32
 -- Versione del server: 5.7.17
 -- Versione PHP: 5.6.30
 
@@ -25,290 +25,408 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `articoli`
+-- Struttura della tabella `ad`
 --
 
-CREATE TABLE `articoli` (
-  `id_articoli` int(11) NOT NULL,
-  `autore` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `data` date NOT NULL,
-  `contenuto` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `titolo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `excerpt` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dump dei dati per la tabella `articoli`
---
-
-INSERT INTO `articoli` (`id_articoli`, `autore`, `data`, `contenuto`, `titolo`, `excerpt`) VALUES
-(1, 'Christian', '2018-02-07', '&lt;p&gt;Questo &amp;egrave; il &lt;em&gt;corpo&lt;/em&gt; dell&amp;nbsp;&lt;strong&gt;articolo&lt;/strong&gt;&lt;strong&gt; 1&lt;/strong&gt;&lt;/p&gt;\r\n', 'Articolo 1', 'Excerpt articolo 1');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `aziende`
---
-
-CREATE TABLE `aziende` (
-  `ID` int(11) NOT NULL,
-  `nome` varchar(20) NOT NULL,
-  `mail` varchar(50) NOT NULL,
-  `logo` varchar(100) NOT NULL
+CREATE TABLE `ad` (
+  `id_ad` int(11) NOT NULL,
+  `modalita_vendita` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `dimensione` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `formato` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `aziende`
+-- Dump dei dati per la tabella `ad`
 --
 
-INSERT INTO `aziende` (`ID`, `nome`, `mail`, `logo`) VALUES
-(1, 'Amazon', 'amazon@mail.com', 'http://localhost/postadvisor/assets/img/amazon_logo.jpg'),
-(2, 'Nike', 'nike@mail.com', 'http://localhost/postadvisor/assets/img/nike_logo.jpg'),
-(3, 'Playboy', 'playboy@mail.com', 'http://localhost/postadvisor/assets/img/playboy_logo.jpg');
+INSERT INTO `ad` (`id_ad`, `modalita_vendita`, `dimensione`, `formato`) VALUES
+(1, 'asdf', 'fdefs', 'sdfd'),
+(3, 'cc', 'fgfd', 'dgdsfg');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `aziende_posts`
+-- Struttura della tabella `analytic`
 --
 
-CREATE TABLE `aziende_posts` (
-  `ID_posts` int(11) NOT NULL,
-  `ID_aziende` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `aziende_posts`
---
-
-INSERT INTO `aziende_posts` (`ID_posts`, `ID_aziende`) VALUES
-(1, 1),
-(2, 1),
-(3, 2);
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `page_view`
---
-
-CREATE TABLE `page_view` (
-  `id_page_view` int(11) NOT NULL,
-  `post_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
-  `id_testate` int(11) NOT NULL,
+CREATE TABLE `analytic` (
+  `id_analytic` int(11) NOT NULL,
   `page_view` int(11) NOT NULL,
-  `data` date NOT NULL
+  `alexa_rank` int(11) NOT NULL,
+  `data` date NOT NULL,
+  `id_testata` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `postmeta`
+-- Struttura della tabella `azienda`
 --
 
-CREATE TABLE `postmeta` (
-  `meta_id` bigint(20) UNSIGNED NOT NULL,
-  `post_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
-  `meta_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_value` longtext COLLATE utf8mb4_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `azienda` (
+  `id_azienda` int(11) NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `url` text NOT NULL,
+  `logo` text NOT NULL,
+  `userId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `azienda`
+--
+
+INSERT INTO `azienda` (`id_azienda`, `nome`, `url`, `logo`, `userId`) VALUES
+(1, 'Amazon', '', 'assets/img/amazon_logo.jpg', 1),
+(2, 'Nike', '', 'assets/img/nike_logo.jpg', 2),
+(3, 'Playboy', '', 'assets/img/playboy_logo.jpg', 3),
+(4, 'Facebook', '', 'assets/img/facebook_logo.png', 4);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `posts`
+-- Struttura della tabella `ci_sessions`
 --
 
-CREATE TABLE `posts` (
-  `ID` bigint(20) UNSIGNED NOT NULL,
-  `post_author` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
-  `post_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `post_date_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `post_content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_title` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_excerpt` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'publish',
-  `comment_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'open',
-  `ping_status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'open',
-  `post_password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `post_name` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `to_ping` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pinged` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `post_modified_gmt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `post_content_filtered` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `post_parent` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
-  `guid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `menu_order` int(11) NOT NULL DEFAULT '0',
-  `post_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'post',
-  `post_mime_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `comment_count` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `ci_sessions` (
+  `session_id` varchar(40) NOT NULL DEFAULT '0',
+  `ip_address` varchar(45) NOT NULL DEFAULT '0',
+  `user_agent` varchar(120) NOT NULL,
+  `last_activity` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `user_data` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `preventivo`
+-- Struttura della tabella `comune`
 --
 
-CREATE TABLE `preventivo` (
-  `post_id` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
-  `id_testate` int(11) NOT NULL,
-  `data_pubblicazione` date NOT NULL,
-  `data_fine_pubblicazione` date NOT NULL,
-  `prezzo` int(11) NOT NULL,
-  `stato` varchar(20) NOT NULL COMMENT 'approvato=2, rifiutato=0, in attesa=3, pubblicato=1'
+CREATE TABLE `comune` (
+  `id_comune` int(11) NOT NULL,
+  `nome` int(11) NOT NULL,
+  `provincia` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `testate`
+-- Struttura della tabella `influencer`
 --
 
-CREATE TABLE `testate` (
-  `id_testate` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `url` varchar(200) NOT NULL,
-  `ranking` varchar(20) NOT NULL,
-  `tipologia` varchar(20) NOT NULL,
-  `logo` varchar(100) NOT NULL
+CREATE TABLE `influencer` (
+  `id_influencer` int(11) NOT NULL,
+  `nome` varchar(20) NOT NULL,
+  `cognome` varchar(20) NOT NULL,
+  `userId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `testate`
---
-
-INSERT INTO `testate` (`id_testate`, `nome`, `url`, `ranking`, `tipologia`, `logo`) VALUES
-(1, 'Corriere della Sera', 'http://www.corriere.it/', '', '', 'http://localhost/postadvisor/assets/img/corriere_logo.jpg'),
-(2, 'Ansa', 'ansa.it', '', '', 'http://localhost/postadvisor/assets/img/ansa_logo.png'),
-(3, 'Tuttoandroid', '', '', '', 'http://localhost/postadvisor/assets/img/tuttoandroid_logo.png'),
-(4, 'Palermotoday', '', '', '', 'http://localhost/postadvisor/assets/img/palermotoday_logo.png'),
-(5, 'Macitynet', '', '', '', 'http://localhost/postadvisor/assets/img/macitynet_logo.png'),
-(6, 'New York Times', '', '', '', 'http://localhost/postadvisor/assets/img/newyorktimes_logo.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `users`
+-- Struttura della tabella `tbl_last_login`
 --
 
-CREATE TABLE `users` (
-  `ID` bigint(20) UNSIGNED NOT NULL,
-  `user_login` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_pass` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_nicename` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_url` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_registered` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `user_activation_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_status` int(11) NOT NULL DEFAULT '0',
-  `display_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `user_type` int(11) NOT NULL COMMENT '1=azienda; 2=testata; 3=standard; 4=amministratore'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `tbl_last_login` (
+  `id` bigint(20) NOT NULL,
+  `userId` bigint(20) NOT NULL,
+  `sessionData` varchar(2048) NOT NULL,
+  `machineIp` varchar(1024) NOT NULL,
+  `userAgent` varchar(128) NOT NULL,
+  `agentString` varchar(1024) NOT NULL,
+  `platform` varchar(128) NOT NULL,
+  `createdDtm` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `users`
+-- Dump dei dati per la tabella `tbl_last_login`
 --
 
-INSERT INTO `users` (`ID`, `user_login`, `user_pass`, `user_nicename`, `user_email`, `user_url`, `user_registered`, `user_activation_key`, `user_status`, `display_name`, `user_type`) VALUES
-(3, 'a@a.a', '$2y$10$5QTx4.z22IO8o3.D2vjzYu5XxDDDx7kFV/FU64Ho8td1TVxwYDy.u', '', 'a@a.a', '', '0000-00-00 00:00:00', '', 0, '', 3);
+INSERT INTO `tbl_last_login` (`id`, `userId`, `sessionData`, `machineIp`, `userAgent`, `agentString`, `platform`, `createdDtm`) VALUES
+(1, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-08 08:50:37'),
+(2, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-08 11:12:52'),
+(3, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-08 11:15:07'),
+(4, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-08 12:32:20'),
+(5, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-08 14:23:46'),
+(6, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-08 15:01:01'),
+(7, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-08 18:15:29'),
+(8, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"System Administrator\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-09 08:54:14'),
+(9, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"Christian Gritto\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-09 10:50:24'),
+(10, 1, '{\"role\":\"1\",\"roleText\":\"Amministratore\",\"name\":\"Christian Gritto\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-09 11:42:41'),
+(11, 9, '{\"role\":\"5\",\"roleText\":\"Influencer\",\"name\":null}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-09 11:42:53'),
+(12, 11, '{\"role\":\"5\",\"roleText\":\"Influencer\",\"name\":\"Germano Ticini\"}', '127.0.0.1', 'Chrome 64.0.3282.186', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36', 'Windows 10', '2018-03-09 12:00:23');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tbl_reset_password`
+--
+
+CREATE TABLE `tbl_reset_password` (
+  `id` bigint(20) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `activation_id` varchar(32) NOT NULL,
+  `agent` varchar(512) NOT NULL,
+  `client_ip` varchar(32) NOT NULL,
+  `isDeleted` tinyint(4) NOT NULL DEFAULT '0',
+  `createdBy` bigint(20) NOT NULL DEFAULT '1',
+  `createdDtm` datetime NOT NULL,
+  `updatedBy` bigint(20) DEFAULT NULL,
+  `updatedDtm` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tbl_roles`
+--
+
+CREATE TABLE `tbl_roles` (
+  `roleId` tinyint(4) NOT NULL COMMENT 'role id',
+  `role` varchar(50) NOT NULL COMMENT 'role text'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `tbl_roles`
+--
+
+INSERT INTO `tbl_roles` (`roleId`, `role`) VALUES
+(1, 'Amministratore'),
+(2, 'Moderatore'),
+(3, 'Testata'),
+(4, 'Azienda'),
+(5, 'Influencer');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `tbl_users`
+--
+
+CREATE TABLE `tbl_users` (
+  `userId` int(11) NOT NULL,
+  `email` varchar(128) NOT NULL COMMENT 'login email',
+  `password` varchar(128) NOT NULL COMMENT 'hashed login password',
+  `name` varchar(128) DEFAULT NULL COMMENT 'display name of the user',
+  `mobile` varchar(20) DEFAULT NULL,
+  `roleId` tinyint(4) NOT NULL,
+  `isDeleted` tinyint(4) NOT NULL DEFAULT '0',
+  `createdBy` int(11) NOT NULL,
+  `createdDtm` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedBy` int(11) DEFAULT NULL,
+  `updatedDtm` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `tbl_users`
+--
+
+INSERT INTO `tbl_users` (`userId`, `email`, `password`, `name`, `mobile`, `roleId`, `isDeleted`, `createdBy`, `createdDtm`, `updatedBy`, `updatedDtm`) VALUES
+(1, 'admin@example.com', '$2y$10$6NOKhXKiR2SAgpFF2WpCkuRgYKlSqFJaqM0NgIM3PT1gKHEM5/SM6', 'Christian Gritto', '9890098900', 1, 0, 0, '2015-07-01 18:56:49', 1, '2018-01-05 05:56:34'),
+(2, 'manager@example.com', '$2y$10$quODe6vkNma30rcxbAHbYuKYAZQqUaflBgc4YpV9/90ywd.5Koklm', 'Manager', '9890098900', 2, 0, 1, '2016-12-09 17:49:56', 1, '2018-01-12 07:22:11'),
+(3, 'employee@example.com', '$2y$10$UYsH1G7MkDg1cutOdgl2Q.ZbXjyX.CSjsdgQKvGzAgl60RXZxpB5u', 'Employee', '9890098900', 3, 0, 1, '2016-12-09 17:50:22', 1, '2018-03-08 11:13:28'),
+(9, 'a@a.a', '$2y$10$2fzCQuByy8IC2S9ShUxoh.hRZJ/pNVBF3aEPqbvzfTz.GNcdrIyuW', NULL, NULL, 5, 0, 0, '2018-03-09 11:41:05', NULL, NULL),
+(10, 'b@b.b', '$2y$10$U68xIgnKTwiMhPhPyAD71exHrjWHQ8GNgCy04t2qm07dN4X9sfv5a', NULL, NULL, 4, 0, 0, '2018-03-09 11:42:18', NULL, NULL),
+(11, 'c@c.c', '$2y$10$UjVK5wzZ6sv9m1DJnr57LOc19mbSvWPgm2JG8quHoDBS5YWkzVrFS', 'Germano Ticini', NULL, 5, 0, 0, '2018-03-09 11:50:42', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `testata`
+--
+
+CREATE TABLE `testata` (
+  `id_testata` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `paese` varchar(50) NOT NULL,
+  `lingua` varchar(20) NOT NULL,
+  `periodicita` varchar(50) NOT NULL,
+  `genere` varchar(20) NOT NULL,
+  `formato` varchar(20) NOT NULL,
+  `sede` varchar(50) NOT NULL,
+  `proprieta` varchar(100) NOT NULL,
+  `capitale_sociale` int(11) DEFAULT NULL,
+  `direttore` varchar(50) NOT NULL,
+  `condirettore` varchar(50) NOT NULL,
+  `vicedirettore` varchar(50) NOT NULL,
+  `redattore_capo` varchar(50) NOT NULL,
+  `issn` int(11) DEFAULT NULL,
+  `cartacea` varchar(2) NOT NULL,
+  `digitale` varchar(2) NOT NULL,
+  `sito` varchar(100) NOT NULL,
+  `logo` text NOT NULL,
+  `userId` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `testata`
+--
+
+INSERT INTO `testata` (`id_testata`, `nome`, `paese`, `lingua`, `periodicita`, `genere`, `formato`, `sede`, `proprieta`, `capitale_sociale`, `direttore`, `condirettore`, `vicedirettore`, `redattore_capo`, `issn`, `cartacea`, `digitale`, `sito`, `logo`, `userId`) VALUES
+(2, 'Ansa', '', '', '', '', '', '', '', 1, '', '', '', '', 1, '', '', '', 'assets/img/ansa_logo.png', 1),
+(3, 'Corriere', '', '', '', '', '', '', '', 1, '', '', '', '', 1, '', '', '', 'assets/img/corriere_logo.jpg', 2),
+(4, 'Macitynet', '', '', '', '', '', '', '', NULL, '', '', '', '', NULL, '', '', '', 'assets/img/macitynet_logo.png', 3),
+(5, 'New York Times', '', '', '', '', '', '', '', NULL, '', '', '', '', NULL, '', '', '', 'assets/img/newyorktimes_logo.jpg', 4),
+(6, 'Palermotoday', '', '', '', '', '', '', '', NULL, '', '', '', '', NULL, '', '', '', 'assets/img/palermotoday_logo.png', 5),
+(7, 'Tuttoandroid', '', '', '', '', '', '', '', NULL, '', '', '', '', NULL, '', '', '', 'assets/img/tuttoandroid_logo.png', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `testata_ad`
+--
+
+CREATE TABLE `testata_ad` (
+  `costo_giornaliero` int(11) NOT NULL,
+  `costo_per_impression` int(11) NOT NULL,
+  `percventuale_massima_sconto` int(11) NOT NULL,
+  `id_testata` int(11) NOT NULL,
+  `id_ad` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `testata_comune`
+--
+
+CREATE TABLE `testata_comune` (
+  `copertura` text NOT NULL,
+  `id_testata` int(11) NOT NULL,
+  `id_comune` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `users_testata_ad`
+--
+
+CREATE TABLE `users_testata_ad` (
+  `costo` int(11) NOT NULL,
+  `budget` int(11) NOT NULL,
+  `target` varchar(50) NOT NULL,
+  `giorni` int(11) NOT NULL,
+  `impression` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `id_testata` int(11) NOT NULL,
+  `id_ad` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Indici per le tabelle scaricate
 --
 
 --
--- Indici per le tabelle `articoli`
+-- Indici per le tabelle `ad`
 --
-ALTER TABLE `articoli`
-  ADD PRIMARY KEY (`id_articoli`);
+ALTER TABLE `ad`
+  ADD PRIMARY KEY (`id_ad`);
 
 --
--- Indici per le tabelle `aziende`
+-- Indici per le tabelle `analytic`
 --
-ALTER TABLE `aziende`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `analytic`
+  ADD PRIMARY KEY (`id_analytic`);
 
 --
--- Indici per le tabelle `page_view`
+-- Indici per le tabelle `azienda`
 --
-ALTER TABLE `page_view`
-  ADD PRIMARY KEY (`id_page_view`);
+ALTER TABLE `azienda`
+  ADD PRIMARY KEY (`id_azienda`);
 
 --
--- Indici per le tabelle `postmeta`
+-- Indici per le tabelle `ci_sessions`
 --
-ALTER TABLE `postmeta`
-  ADD PRIMARY KEY (`meta_id`),
-  ADD KEY `post_id` (`post_id`),
-  ADD KEY `meta_key` (`meta_key`(191));
+ALTER TABLE `ci_sessions`
+  ADD PRIMARY KEY (`session_id`),
+  ADD KEY `last_activity_idx` (`last_activity`);
 
 --
--- Indici per le tabelle `posts`
+-- Indici per le tabelle `influencer`
 --
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `post_name` (`post_name`(191)),
-  ADD KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
-  ADD KEY `post_parent` (`post_parent`),
-  ADD KEY `post_author` (`post_author`);
+ALTER TABLE `influencer`
+  ADD PRIMARY KEY (`id_influencer`);
 
 --
--- Indici per le tabelle `testate`
+-- Indici per le tabelle `tbl_last_login`
 --
-ALTER TABLE `testate`
-  ADD PRIMARY KEY (`id_testate`);
+ALTER TABLE `tbl_last_login`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `users`
+-- Indici per le tabelle `tbl_reset_password`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `user_email_2` (`user_email`),
-  ADD KEY `user_login_key` (`user_login`),
-  ADD KEY `user_nicename` (`user_nicename`),
-  ADD KEY `user_email` (`user_email`);
+ALTER TABLE `tbl_reset_password`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indici per le tabelle `tbl_roles`
+--
+ALTER TABLE `tbl_roles`
+  ADD PRIMARY KEY (`roleId`);
+
+--
+-- Indici per le tabelle `tbl_users`
+--
+ALTER TABLE `tbl_users`
+  ADD PRIMARY KEY (`userId`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indici per le tabelle `testata`
+--
+ALTER TABLE `testata`
+  ADD PRIMARY KEY (`id_testata`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT per la tabella `articoli`
+-- AUTO_INCREMENT per la tabella `ad`
 --
-ALTER TABLE `articoli`
-  MODIFY `id_articoli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `ad`
+  MODIFY `id_ad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT per la tabella `aziende`
+-- AUTO_INCREMENT per la tabella `analytic`
 --
-ALTER TABLE `aziende`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `analytic`
+  MODIFY `id_analytic` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `page_view`
+-- AUTO_INCREMENT per la tabella `azienda`
 --
-ALTER TABLE `page_view`
-  MODIFY `id_page_view` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `azienda`
+  MODIFY `id_azienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT per la tabella `postmeta`
+-- AUTO_INCREMENT per la tabella `influencer`
 --
-ALTER TABLE `postmeta`
-  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `influencer`
+  MODIFY `id_influencer` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `posts`
+-- AUTO_INCREMENT per la tabella `tbl_last_login`
 --
-ALTER TABLE `posts`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_last_login`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT per la tabella `testate`
+-- AUTO_INCREMENT per la tabella `tbl_reset_password`
 --
-ALTER TABLE `testate`
-  MODIFY `id_testate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `tbl_reset_password`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `users`
+-- AUTO_INCREMENT per la tabella `tbl_roles`
 --
-ALTER TABLE `users`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+ALTER TABLE `tbl_roles`
+  MODIFY `roleId` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'role id', AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT per la tabella `tbl_users`
+--
+ALTER TABLE `tbl_users`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT per la tabella `testata`
+--
+ALTER TABLE `testata`
+  MODIFY `id_testata` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
