@@ -1,14 +1,14 @@
-        <footer class="footer absolute-bottom" data-background-color="black">
-            <div class="container">
-                <div class="copyright">
-                    &copy;
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>
-                </div>
+</div>
+<footer class="footer relative-footer" data-background-color="black">
+        <div class="container">
+            <div class="copyright">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 </body>
 <!--   Core JS Files   -->
 <script src="./assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

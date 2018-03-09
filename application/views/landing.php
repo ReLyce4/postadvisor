@@ -13,15 +13,15 @@
 
             <div class="section section-basic">
                 <div class="container">
-                    <div class="row statistics">
+                    <div class="row statistiche">
                         <div class="col-md-4">
-                            <?=$statistics["n_posts"]?><br />Articoli pubblicati
+                            <?=$statistiche["n_ad"]?><br />Tipi di slot pubblicitari
                         </div>
                         <div class="col-md-4 border-side">
-                        <?=$statistics["n_aziende"]?><br />Aziende supportate
+                        <?=$statistiche["n_cliente"]?><br />Clienti serviti
                         </div>
                         <div class="col-md-4">
-                        <?=$statistics["n_testate"]?><br />Testate giornalistiche
+                        <?=$statistiche["n_testata"]?><br />Testate giornalistiche
                         </div>
                     </div>
                     <hr />
@@ -75,35 +75,34 @@
                             <div class="col-md-10">
                             </div>
                         </div>
-
                         <h2 class="title">Aziende famose che hanno usufruito del nostro servizio</h2>
                         <div class="row">
-                        <?php for ($x = 0; $x < 3; $x++): ?>
-                            <div class="col-sm-4">
-                                    <p class="category" style="text-align:center";><?=$aziende[$x]["nome"]?></p>
-                                    <img src="<?=$aziende[$x]["logo"]?>" alt="Circle Image" class="rounded-circle">
+                        <?php for ($x = 0; $x < 4; $x++): ?>
+                            <div class="col-sm-3">
+                        <p class="category" style="text-align:center" ;>
+                            <?=$azienda[$x]['nome']?>
+                        </p>
+                        <img src="<?=base_url($azienda[$x]['logo'])?>" alt="Circle Image" class="rounded-circle">
                                     <!-- <p class="paragraph" style="margin-top: 25px;">Elogiamo la nostra partnership in qualsiasi maniera possibile</p> -->
                             </div>
                         <?php endfor?>
               </div>
-
+            </div>
             <div class="container" style="margin-top: 20px;">
                     <h2 class="title">Testate giornalistiche più rinomate</h2>
                 <div class="row">
                 <?php for ($x = 0; $x < 6; $x++): ?>
                     <div class="col-md-2">
-                            <img src="<?=$testate[$x]?>" alt="Circle Image" class="image">
+                            <img src="<?=base_url($testata[$x])?>" alt="Circle Image" class="image">
                     </div>
                 <?php endfor?>
-
                 </div>
             </div>
-
-
+                </div>
+            </div>
             <div class="section section-signup" style="background-image: url('assets/img/bg11.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
                 <div class="container">
                     <div class="row">
-
                         <div class="card card-signup" data-background-color="green">
                             <form class="form" method="" action="">
                                 <div class="header text-center">
@@ -120,7 +119,6 @@
                                         </a>
                                     </div>
                                 </div>
-
                                 <div class="card-body">
                                     <div class="input-group form-group-no-border">
                                         <span class="input-group-addon">
@@ -153,7 +151,6 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -169,7 +166,8 @@
                         <h4 class="title title-up">Modal title</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named
+                        Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
                         </p>
                     </div>
                     <div class="modal-footer">

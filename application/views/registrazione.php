@@ -11,6 +11,12 @@
                                 <div class="card-body">
                                     <div class="input-group form-group-no-border">
                                         <span class="input-group-addon">
+                                        <i class="now-ui-icons users_single-02"></i>
+                                        </span>
+                                        <input type="text" name="nome_da_visualizzare" class="form-control" placeholder="Nome da visualizzare" required>
+                                    </div>
+                                    <div class="input-group form-group-no-border">
+                                        <span class="input-group-addon">
                                         <i class="now-ui-icons ui-1_email-85"></i>
                                         </span>
                                         <input type="email" name="email" class="form-control" placeholder="Email" required>
@@ -39,8 +45,9 @@
                                     </script>
                                     <div class="input-group form-group-no-border">
                                         <select name="tipo_utente" class="form-control">
-                                            <option value="1">Generico</option>
-                                            <option value="2">Testata</option>
+                                            <option value="3">Testata</option>
+                                            <option value="4">Azienda</option>
+                                            <option value="5">Influencer</option>
                                         </select>
                                     </div>
                                     <!-- If you want to add a checkbox to this form, uncomment this code -->

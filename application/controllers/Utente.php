@@ -12,12 +12,16 @@ class Utente extends CI_Controller
 
     public function index()
     {
-        header("Location: " . base_url());
+        if(isset($_SESSION["loggato"]) && $_SESSION["loggato"] == TRUE) {
+            header("Location: " . base_url());
+        } else {
+            header("Location: " . base_url('view/login'));
+        }
     }
 
     public function registrazione($default = null)
     {
-        $errore = $this->utente_model->registrazione($_POST["email"], $_POST["password"], $_POST["conferma_password"], $_POST["tipo_utente"]);
+        $errore = $this->utente_model->registrazione($_POST["nome_da_visualizzare"], $_POST["email"], $_POST["password"], $_POST["conferma_password"], $_POST["tipo_utente"]);
 
         if (!is_null($errore)) {
             echo $errore;
@@ -35,24 +39,14 @@ class Utente extends CI_Controller
             if (!is_null($login_data["errore"])) {
                 echo $login_data["errore"];
             } else {
+                $_SESSION["nome"] = $login_data["nome"];
                 $_SESSION["email"] = $email;
                 $_SESSION["tipo_utente"] = $login_data["tipo_utente"];
+                $_SESSION["loggato"] = TRUE;
                 header("Location: " . base_url());
             }
         } else {
             echo "Errore 502 Bad Gateway";
-        }
-    }
-
-    public function profilo($tipo_utente = null)
-    {
-        if (is_null($tipo_utente)) {
-            echo "Errore 404 Page Not Found";
-        } else {
-            $dati_profilo = $this->utente_model->get_dati_profilo($_SESSION["email"], $tipo_utente);
-            $this->load->view('header');
-            $this->load->view('profilo', $dati_profilo);
-            $this->load->view('footer');
         }
     }
 
@@ -62,3 +56,4 @@ class Utente extends CI_Controller
         header("Location: " . base_url());
     }
 }
+//pagina di login nel controller "Utente"

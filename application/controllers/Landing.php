@@ -12,11 +12,11 @@ class Landing extends CI_Controller
 
     public function index()
     {
-        //$data["statistics"] = $this->Landing_model->get_statistiche();
-        //$data["aziende"] = $this->Landing_model->get_dati_base_aziende(3); // 3 è il numero di aziende da mostrare sulla landing page
-        //$data["testate"] = $this->Landing_model->get_dati_base_testate(6); // 6 è il numero di testate giornalistiche da mostrare sulla landing page
+        $data["statistiche"] = $this->Landing_model->get_statistiche();
+        $data["azienda"] = $this->Landing_model->get_dati_base_azienda(4); // L'argomento è il numero di aziende da mostrare sulla landing page
+        $data["testata"] = $this->Landing_model->get_logo_testata(6); // L'argomento è il numero di testate giornalistiche da mostrare sulla landing page
         $this->load->view('header');
-        $this->load->view('landing'/*, $data*/);
+        $this->load->view('landing', $data);
         $this->load->view('footer');
     }
 

@@ -7,29 +7,29 @@ class Landing_model extends CI_Model
         parent::__construct();
     }
 
-    /*public function get_statistiche()
+    public function get_statistiche()
     {
-        $query = "SELECT COUNT(ID) AS num FROM posts";
+        $query = "SELECT COUNT(id_ad) AS num FROM ad";
         $result = $this->db->query($query);
         $result = $result->row();
-        $row["n_posts"] = $result->num;
+        $row["n_ad"] = $result->num;
 
-        $query = "SELECT COUNT(id_testate) AS num FROM testate";
+        $query = "SELECT COUNT(id_testata) AS num FROM testata";
         $result = $this->db->query($query);
         $result = $result->row();
-        $row["n_testate"] = $result->num;
+        $row["n_testata"] = $result->num;
 
-        $query = "SELECT COUNT(DISTINCT id_aziende) AS num FROM aziende_posts";
+        $query = "SELECT COUNT(DISTINCT userId) AS num FROM users_testata_ad";
         $result = $this->db->query($query);
         $result = $result->row();
-        $row["n_aziende"] = $result->num;
+        $row["n_cliente"] = $result->num;
 
         return $row;
     }
 
-    public function get_dati_base_aziende($n_aziende)
+    public function get_dati_base_azienda($n_azienda)
     {
-        $query = "SELECT nome, logo FROM aziende LIMIT " . $n_aziende;
+        $query = "SELECT nome, logo FROM azienda LIMIT " . $n_azienda;
         $result = $this->db->query($query);
         $x = 0;
         foreach ($result->result() as $temp) {
@@ -40,9 +40,9 @@ class Landing_model extends CI_Model
         return $row;
     }
 
-    public function get_dati_base_testate($n_testate)
+    public function get_logo_testata($n_testate)
     {
-        $query = "SELECT logo FROM testate LIMIT " . $n_testate;
+        $query = "SELECT logo FROM testata LIMIT " . $n_testate;
         $result = $this->db->query($query);
         $x = 0;
         foreach ($result->result() as $temp) {
@@ -50,5 +50,5 @@ class Landing_model extends CI_Model
             $x++;
         }
         return $row;
-    }*/
+    }
 }

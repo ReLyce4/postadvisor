@@ -30,18 +30,20 @@
  * Copyright 2012-2013 Mattia Larentis
  * http://www.apache.org/licenses/LICENSE-2.0
  */
-
-.statistics {
+.statistiche {
     text-align: center;
     font-size: 25px;
 }
 
-.absolute-bottom {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1030
+.main {
+    position: relative;
+    height: 94vmin;
+    background: #FFFFFF;
+}
+
+.relative-footer {
+    height: 6vmin;
+    z-index: 1030;
 }
 
 .border-side {
@@ -3314,12 +3316,6 @@ body {
     font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-}
-
-.main {
-    position: relative;
-    height: 100vmin;
-    background: #FFFFFF;
 }
 
 

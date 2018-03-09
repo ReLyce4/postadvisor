@@ -16,9 +16,10 @@
     <link href="<?=base_url("/assets/css/now-ui-kit.css?v=1.1.0")?>" rel="stylesheet" />
 </head>
 
-<body class="index-page sidebar-collapse">
+<body id="body" class="index-page sidebar-collapse">
+    <div id="main">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-success fixed-top" color-on-scroll="400">
+    <nav class="navbar navbar-expand-lg bg-success fixed-top">
         <div class="container" class="bg-success">
             <div class="navbar-translate">
 					<a href="<?=base_url()?>"><img src="<?=base_url("/assets/img/logo3.png")?>" style="width: 200px;"></a>
@@ -48,7 +49,7 @@
                             <p>Contattaci</p>
                         </a>
                     </li>
-                    <?php if (!isset($_SESSION["email"])): ?>
+                    <?php if (!isset($_SESSION["loggato"])): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?=base_url("view/login")?>">
                             <i class="now-ui-icons users_circle-08"></i>
@@ -62,11 +63,11 @@
                         </a>
                     </li>
                     <?php endif?>
-                    <?php if (isset($_SESSION["email"])): ?>
+                    <?php if (isset($_SESSION["loggato"])): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=base_url("utente/profilo")?>">
+                        <a class="nav-link" href="<?=base_url()?>">
                             <i class="now-ui-icons users_circle-08"></i>
-                            <p><?=$_SESSION["email"]?></p>
+                            <p><?=$_SESSION["nome"]?></p>
                         </a>
                     </li>
                     <li class="nav-item">
